@@ -1,6 +1,4 @@
-import mypic from "../assets/mypic.png";
-import anuj_photo from "../assets/anuj_photo.png";
-import ashu_photo from "../assets/ashu_photo.png";
+
 function LandingPage() {
   return (
     <div>
@@ -79,17 +77,17 @@ function LandingPage() {
             <h2>Meet Our Developers Team</h2>
             <div className="team-members">
               <div className="member">
-                <img src="mypic.jpg" alt="Ashutosh Das" />
+                <img src="src\assets\mypic.jpg" alt="Ashutosh Das" />
                 <h3>Ashutosh Das</h3>
                 <p>Project Manager</p>
               </div>
               <div className="member">
-                <img src="anuj_photo.jpg" alt="Anuj Kumar Yadav" />
+                <img src="src\assets\Anuj_photo.jpg" alt="Anuj Kumar Yadav" />
                 <h3>Anuj Kumar</h3>
                 <p>Software</p>
               </div>
               <div className="member">
-                <img src="ashu photo.jpg" alt="Emily Chen" />
+                <img src="src\assets\ashu_photo.jpg" alt="Ashu Kumar" />
                 <h3>Ashu Kumar</h3>
                 <p>UX Designer</p>
               </div>
