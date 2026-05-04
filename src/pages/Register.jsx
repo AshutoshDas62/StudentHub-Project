@@ -18,42 +18,41 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  // ... (validation logic)
 
-    if (form.password !== form.confirm) {
-      alert("❌ Passwords do not match");
-      return;
-    }
+  try {
+    const res = await fetch("https://studenthub-backend-s4nw.onrender.com/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: form.name,
+        email: form.email,
+        password: form.password,
+      }),
+    });
 
-    try {
-      const res = await fetch("https://studenthub-backend-s4nw.onrender.com//src/pages/Register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          password: form.password,
-        }),
-      });
-
+    // Check if the response is actually JSON before parsing
+    const contentType = res.headers.get("content-type");
+    if (contentType && contentType.indexOf("application/json") !== -1) {
       const data = await res.json();
-
       if (res.ok) {
         alert("✅ " + data.msg);
         navigate("/login");
       } else {
-        alert("❌ " + data.msg);
+        alert("❌ " + (data.msg || "Registration failed"));
       }
-
-      
-    } catch (error) {
-      console.error(error);
-      alert("❌ Cannot connect to backend");
+    } else {
+      // This handles the 500 error page scenario
+      const errorText = await res.text();
+      console.error("Server Error HTML:", errorText);
+      alert("❌ Server Error: The backend is having trouble.");
     }
-    console.log("Saving to:", FILE);
-  };
+  } catch (error) {
+    console.error("Connection Error:", error);
+    alert("❌ Cannot connect to backend");
+  }
+};
 
   return (
     <div className="
