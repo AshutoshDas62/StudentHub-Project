@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 export default function FeaturesShowcase() {
   const features = [
     {
@@ -18,48 +19,98 @@ export default function FeaturesShowcase() {
   ];
 
   return (
-    <section className="bg-linear-to-b from-[#0b1220] to-[#0e1a2f] py-24">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="
+  bg-gray-100 
+  dark:bg-[#0b1220] 
+  py-24 
+  transition-colors duration-300
+">
+  <div className="max-w-7xl mx-auto px-6">
 
-        {/* Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Everything You Need for Academic Success
-          </h2>
-          <p className="text-gray-400 text-lg">
-            Student Hub provides powerful tools designed specifically for modern
-            students to excel in their academic journey.
+    {/* Heading */}
+    <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <h2 className="text-3xl md:text-4xl font-bold 
+        text-gray-900 dark:text-white">
+        Everything You Need for Academic Success
+      </h2>
+
+      <p className="text-gray-600 dark:text-gray-400 text-lg">
+        Student Hub provides powerful tools designed specifically for modern
+        students to excel in their academic journey.
+      </p>
+    </div>
+
+    {/* Cards */}
+    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {features.map((item, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+
+          whileHover={{
+            y: -12,
+            scale: 1.03,
+            transition: { type: "spring", stiffness: 300, damping: 20 }
+          }}
+
+          className="
+            relative group
+            bg-white dark:bg-gray-900
+            rounded-2xl p-6
+            shadow-md dark:shadow-lg
+            hover:shadow-2xl
+            border border-gray-200 dark:border-gray-700
+            transition-all duration-300
+            cursor-pointer
+          "
+        >
+
+          {/* Glow border */}
+          <div className="
+            absolute inset-0 rounded-2xl 
+            border-2 border-transparent 
+            group-hover:border-blue-500/30 
+            transition-colors duration-300
+            pointer-events-none
+          " />
+
+          {/* Image */}
+          <div className="overflow-hidden rounded-xl mb-6">
+            <motion.img
+              whileHover={{ scale: 1.08 }}
+              transition={{ duration: 0.5 }}
+              src={item.img}
+              alt={item.title}
+              className="w-full h-56 object-cover"
+            />
+          </div>
+
+          {/* Title */}
+          <h3 className="
+            text-gray-900 dark:text-white 
+            text-lg font-semibold mb-3 text-center
+            group-hover:text-blue-500
+            transition-colors
+          ">
+            {item.title}
+          </h3>
+
+          {/* Description */}
+          <p className="
+            text-gray-600 dark:text-gray-400 
+            text-sm leading-relaxed text-center
+          ">
+            {item.desc}
           </p>
-        </div>
 
-        {/* Cards */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((item, index) => (
-            <div
-              key={index}
-              className="bg-[#141c2f] rounded-2xl p-6 shadow-lg hover:shadow-xl transition"
-            >
-              {/* Image */}
-              <div className="overflow-hidden rounded-xl mb-6">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="w-full h-56 object-cover"
-                />
-              </div>
+        </motion.div>
+      ))}
+    </div>
 
-              {/* Content */}
-              <h3 className="text-white text-lg font-semibold mb-3 text-center">
-                {item.title}
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed text-center">
-                {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </section>
+  </div>
+</section>
   );
 }

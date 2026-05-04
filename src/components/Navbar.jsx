@@ -1,51 +1,72 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Sun, Moon, Menu } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    document.documentElement.classList.toggle("dark", savedTheme === "dark");
+
+  const [dark, setDark] = useState(false);
+
+  // Load saved theme
+ useEffect(() => {
+  const saved = localStorage.getItem("theme") === "dark";
+  setDark(saved);
   }, []);
 
+  // Toggle theme
   const toggleTheme = () => {
-    const isDark = document.documentElement.classList.toggle("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  };
+  const html = document.documentElement;
+  const newTheme = !dark;
+
+  setDark(newTheme);
+
+  if (newTheme) {
+    html.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    html.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  }
+};
 
   return (
-    <header className="bg-white dark:bg-gray-900 shadow-sm border-b border-gray-100 dark:border-gray-800 sticky top-0 z-50">
-      <div className="max-w-9xl mx-0 px-0 sm:px-0 lg:px-8">
-        <div className="flex justify-between items-center h-10">
+    <header className="bg-white dark:bg-gray-900 shadow-sm border-b border-gray-100 dark:border-gray-800 sticky top-0 z-50 transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
           
-          <h2 className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          {/* Logo */}
+          <Link to="/" className="text-2xl font-bold text-blue-600 dark:text-blue-400">
             StudentHub
-          </h2>
+          </Link>
 
+          {/* Menu */}
           <nav className="hidden md:flex space-x-8">
-            {["Features", "Pricing", "Resources", "Contact"].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 text-sm font-medium transition-colors"
-              >
-                {item}
-              </a>
-            ))}
+            <a href="#" className="nav-link">Features</a>
+            <a href="#" className="nav-link">Pricing</a>
+            <a href="#" className="nav-link">Resources</a>
+            <a href="#" className="nav-link">Contact</a>
           </nav>
 
+          {/* Right */}
           <div className="flex items-center space-x-4">
+
+            {/* ✅ FIXED THEME BUTTON */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+              className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
             >
-              <Sun className="h-5 w-5 hidden dark:block" />
-              <Moon className="h-5 w-5 dark:hidden" />
+              {dark ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
             </button>
 
-            <a className="text-sm text-gray-600 dark:text-gray-300">Sign In</a>
-            <a className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+            <Link
+              to="/login"
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition"
+            >
               Get Started
-            </a>
+            </Link>
 
             <Menu className="md:hidden h-6 w-6 text-gray-600 dark:text-gray-300" />
           </div>

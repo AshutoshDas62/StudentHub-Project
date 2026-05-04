@@ -15,11 +15,11 @@ export default function Features() {
   ];
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section className="bg-gray-100 dark:bg-gray-900 py-20 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center mb-16 max-w-3xl mx-auto space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-600 dark:text-white">
             Everything You Need for Academic Success
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-lg">
@@ -31,7 +31,7 @@ export default function Features() {
           {features.map((item, i) => (
             <div
               key={i}
-              className="p-8 rounded-xl bg-white dark:bg-gray-800 shadow hover:shadow-lg transition"
+              className="p-8 rounded-xl bg-white dark:bg-gray-900 shadow-lg hover:shadow-2xl hover:-translate-y-4 transition-all duration-300 border border-gray-200 dark:border-gray-700"
             >
               <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
                 {item.title}
