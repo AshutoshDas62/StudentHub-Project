@@ -13,10 +13,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route
+        {/* <Route
           path="/"
           element={user ? <Dashboard /> : <Navigate to="/login" />}
-        />
+        /> */}
       </Routes>
     </>
   );
