@@ -22,7 +22,7 @@ export default function Register() {
   // ... (validation logic)
 
   try {
-    const res = await fetch("https://studenthub-backend-s4nw.onrender.com/register", {
+    const res = await fetch("https://studenthub-backend-0xiq.onrender.com/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

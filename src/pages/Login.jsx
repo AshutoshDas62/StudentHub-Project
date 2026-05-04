@@ -17,7 +17,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://studenthub-backend-s4nw.onrender.com/login", {
+      const res = await fetch("https://studenthub-backend-0xiq.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
