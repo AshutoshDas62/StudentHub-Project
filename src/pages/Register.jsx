@@ -26,7 +26,7 @@ export default function Register() {
     }
 
     try {
-      const res = await fetch("https://studenthub-backend-s4nw.onrender.com/register", {
+      const res = await fetch("https://studenthub-backend-s4nw.onrender.com//src/pages/Register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
