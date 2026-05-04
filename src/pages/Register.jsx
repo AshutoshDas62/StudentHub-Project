@@ -47,10 +47,12 @@ export default function Register() {
         alert("❌ " + data.msg);
       }
 
+      
     } catch (error) {
       console.error(error);
       alert("❌ Cannot connect to backend");
     }
+    console.log("Saving to:", FILE);
   };
 
   return (
